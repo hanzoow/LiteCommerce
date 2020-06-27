@@ -1,0 +1,141 @@
+﻿@model LiteCommerce.Admin.Models.OrderPagingationResult
+
+@{
+    ViewBag.Title = "Manage Orders";
+    int i = 0;
+    string paramSearch = "searchValue=" + Model.SearchValue;
+}
+<!-- Search box -->
+<div class="box box-primary">
+    <label>@ViewBag.Delete</label>
+    <!-- form start -->
+    <form role="form" action="~/Order" method="get">
+        <div class="box-body">
+            <div class="input-group input-group-sm">
+                <input type="text" name="searchValue" class="form-control" placeholder="Type anything" value="@Model.SearchValue">
+                <span class="input-group-btn">
+                    <button onclick="myFunction()" class="btn btn-primary btn-flat"><i class="fa fa-search"></i></button>
+                </span>
+            </div>
+        </div>
+        <!-- /.box-body -->
+    </form>
+</div>
+<!-- /.box -->
+<form action="~/Order/Delete" id="formDelete" onsubmit="return myFunction()" method="POST">
+
+    <div class="row">
+        <div class="col-sm-8">
+            <span>There are <b>@Model.RowCount</b> Orders. Page <b>@Model.Page/@Model.PageCount</b></span>
+        </div>
+        <div class="col-sm-4">
+            <div class="pull-right">
+                <button type="submit" name="method" value="delete" class="btn btn-sm btn-danger"><i class="fa fa-trash-o"></i> Delete</button>
+            </div>
+        </div>
+    </div>
+    <br />
+    <!-- Table box -->
+    <div class="box box-success">
+        <div class="box-body">
+            <table class="table table-bordered table-hover">
+                <thead>
+                    <tr>
+                        <th><input type="checkbox" id="selectAll" /></th>
+                        <th>#</th>
+                        <th>Order dates infomation</th>
+                        <th>Freight</th>
+                        <th>Shipp address</th>
+                        <th>Ship city</th>
+                        <th>Ship country</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.Data)
+                    {
+                        <tr>
+                            <td>
+                                <input type="checkbox" name="orderIds" value="@item.OrderID" />
+                            </td>
+                            <td>@((Model.Page - 1)*Model.PageSize + (++i))</td>
+                            <td>
+                                <span style="display:block" class="text-bold text-blue">Order date: <i class="fa fa-calendar" aria-hidden="true"></i> @item.OrderDate</span>
+                                <br />
+                                <span style="display:block" class="text-bold text-red">Requied date: <i class="fa fa-calendar-times-o" aria-hidden="true"></i>@item.RequiredDate</span>
+                                <br />
+                                <span style="display:block" class="text-bold text-green">Shipped date: <i class="fa fa-calendar-check-o" aria-hidden="true"></i> @(item.ShippedDate.IsEmpty() ? "Không rõ" : item.ShippedDate )</span>
+                            </td>
+                            <td>
+                                <span style="display:block">@item.Freight</span>
+                            </td>
+                            <td>
+                                <span style="display:block"><i class="fa fa-globe"></i> @item.ShipAddress</span>
+                            </td>
+                            <td>
+                                <span style="display:block"><i class="fa fa-globe"></i> @item.ShipCity</span>
+                            </td>
+                            <td>
+                                <span style="display:block"><i class="fa fa-globe"></i> @item.ShipCountry</span>
+                            </td>
+                            <td>
+                                <a href="~/Order/Detail/@item.OrderID" class="btn btn-sm btn-success" data-toggle="tooltip" title="View"><i class="fa fa-eye"></i></a>
+                                <a href="~/Order/Input/@item.OrderID" class="btn btn-sm btn-primary" style="align-items:center"><i class="fa fa-pencil"></i></a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+        <div class="box-footer clearfix">
+            <ul class="pagination pagination-sm no-margin pull-right">
+                @if (Model.Page != 1)
+                {
+                    <li><a href="~/Order?page=1&searchValue=@Model.SearchValue">First</a></li>
+                    <li>
+                        <a href="~/Order?page=@(Model.Page-1)&searchValue=@Model.SearchValue"><span><i class="fa fa-angle-double-left"></i></span></a>
+                    </li>
+                }
+                @for (int page = 1; page <= Model.PageCount; page++)
+                {
+
+                    if (Model.Page == page)
+                    {
+                        <li class="active"><a href="~/Order?page=@page&searchValue=@Model.SearchValue">@page</a></li>
+                    }
+                    else if (page == (Model.Page + 1) || page == (Model.Page + 2) || page == Model.PageCount)
+                    {
+                        <li><a href="~/Order?page=@page&searchValue=@Model.SearchValue">@page</a></li>
+                    }
+                    else if (page == (Model.Page - 1) || page == (Model.Page - 2))
+                    {
+                        <li><a href="~/Order?page=@page&searchValue=@Model.SearchValue">@page</a></li>
+                    }
+                    else if (page == (Model.PageCount - 1))
+                    {
+                        <li class="disabled"><span><i class="fa fa-ellipsis-h"></i></span></li>
+                    }
+
+                }
+                @if (Model.Page != Model.PageCount)
+                {
+                    <li><a href="~/Order?page=@Model.PageCount&@paramSearch">Last</a></li>
+                }
+            </ul>
+        </div>
+        <!-- /.box-body -->
+    </div>
+</form>
+<!-- /.box -->
+
+<script>
+    function myFunction() {
+
+        if (confirm("Bạn có muốn xóa những order này không ?")) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+</script>
+

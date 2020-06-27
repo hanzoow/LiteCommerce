@@ -1,0 +1,112 @@
+﻿@model LiteCommerce.Admin.Models.OrderDetailsResult
+@{
+    ViewBag.Title = "Edit Order Detail";
+}
+
+<script src="~/Themes/AdminLTE/bower_components/jquery/dist/jquery.min.js"></script>
+<!-- Bootstrap 3.3.7 -->
+<script src="~/Themes/AdminLTE/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+<!-- Select2 -->
+<script src="~/Themes/AdminLTE/bower_components/select2/dist/js/select2.full.min.js"></script>
+<!-- InputMask -->
+<script src="~/Themes/AdminLTE/plugins/input-mask/jquery.inputmask.js"></script>
+<script src="~/Themes/AdminLTE/plugins/input-mask/jquery.inputmask.date.extensions.js"></script>
+<script src="~/Themes/AdminLTE/plugins/input-mask/jquery.inputmask.extensions.js"></script>
+<!-- SlimScroll -->
+<script src="~/Themes/AdminLTE/bower_components/jquery-slimscroll/jquery.slimscroll.min.js"></script>
+<!-- FastClick -->
+<script src="~/Themes/AdminLTE/bower_components/fastclick/lib/fastclick.js"></script>
+<!-- AdminLTE App -->
+<script src="~/Themes/AdminLTE/dist/js/adminlte.min.js"></script>
+<!-- AdminLTE for demo purposes -->
+<script src="~/Themes/AdminLTE/dist/js/demo.js"></script>
+<!-- date-range-picker -->
+<script src="~/Themes/AdminLTE/bower_components/moment/min/moment.min.js"></script>
+<script src="~/Themes/AdminLTE/bower_components/bootstrap-daterangepicker/daterangepicker.js"></script>
+<!-- bootstrap datepicker -->
+<script src="~/Themes/AdminLTE/bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
+<div class="box">
+    <div class="box-header with-border">
+        <h3 class="box-title">Order Details</h3>
+
+        <div class="box-tools pull-right">
+            <a href="~/Order/Detail/@Model.OrderID" class="btn btn-sm btn-primary">Back</a>
+        </div>
+    </div>
+    <div class="box-body">
+        <form action="~/Order/OrderDetail" method="post">
+            <input type="hidden" name="ProductID" value="@Model.OrderID" />
+            <table class="table table-bordered table-hover">
+                <thead>
+                    <tr>
+                        <th>Unit Price</th>
+                        <th>Product</th>
+                        <th>Quantity</th>
+                        <th>Discount</th>
+                        <th><button type="button" class="btn btn-sm btn-success" id="addRecord"><i class="fa fa-plus-circle"></i></button></th>
+                    </tr>
+                </thead>
+                <tbody id="inputAttribute">
+                    @foreach (var item in Model.Data)
+                    {
+                        <tr class="increment">
+                            <td>
+                                <input type="number" name="UnitPrice[]" class="form-control" value="@item.UnitPrice" />
+                            </td>
+                            <td>
+
+                                @Html.DropDownListFor(m => m.Product.ProductID, SelectListHelper.ListOfProducts(), new { @class = "form-control", @id = "selectProduct" })
+                            </td>
+
+                            <td>
+                                <input type="number" name="Quantity[]" class="form-control" value="@item.Quantity" />
+                            </td>
+                            <td>
+                                <input type="number" name="Discount[]" class="form-control" value="@item.Discount" />
+                            </td>
+                            <td>
+                                <button type="button" class="btn btn-sm btn-danger" id="removeRecord"><i class="fa fa-times-circle"></i></button>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+            <button type="submit" class="btn btn-primary"><i class="fa fa-save"></i> Lưu</button>
+        </form>
+    </div>
+    <!-- /.box-body -->
+</div>
+<script>
+        let count = 1;
+        multi_attribute(count);
+        function multi_attribute(x) {
+            html = `<tr class="increment">
+                                <td>
+                                    <input type="text" name="Quantity[]" class="form-control"  />
+                                </td>
+                                <td>
+                                   @Html.DropDownListFor(m => m.Product.ProductID, SelectListHelper.ListOfProducts(), new { @class="form-control",@id="selectProduct"})
+                                </td>
+                                <td>
+                                    <input type="text" name="Quantity[]" class="form-control" />
+                                </td>
+                                <td>
+                                    <input type="number" name="Discount[]" class="form-control" min="1"/>
+                                </td>
+                                <td>
+                                    <button class="btn btn-sm btn-danger" id="removeRecord"><i class="fa fa-times-circle"></i></button>
+                                </td>
+                            </tr>`;
+            $('#inputAttribute').append(html);
+        }
+        $(document).on('click', '#addRecord', function () {
+            count++;
+            console.log(count);
+            multi_attribute(count);
+        });
+        $(document).on('click', '#removeRecord', function () {
+            count--;
+            console.log(count);
+            $(this).closest(".increment").remove();
+        });
+</script>
