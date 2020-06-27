@@ -9,5 +9,8 @@ namespace LiteCommerce.Admin.Models
     public class OrderPagingationResult : PaginationResult
     {
         public List<Order> Data;
+
+        public string country;
+
     }
 }

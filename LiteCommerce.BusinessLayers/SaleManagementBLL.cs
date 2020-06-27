@@ -15,17 +15,17 @@ namespace LiteCommerce.BusinessLayers
         {
             OrderDB = new DataLayers.SqlServer.OrderDAL(connectionString);
         }
-        public static List<Order> Order_List(int page, int pageSize, string searchValue)
+        public static List<Order> Order_List(int page, int pageSize, string searchValue,string country)
         {
             if (page < 1)
                 page = 1;
             if (pageSize < 1)
                 pageSize = 1;
-            return OrderDB.List(page, pageSize, searchValue);
+            return OrderDB.List(page, pageSize, searchValue,country);
         }
-        public static int Order_Count(string searchValue)
+        public static int Order_Count(string searchValue,string country)
         {
-            return OrderDB.Count(searchValue);
+            return OrderDB.Count(searchValue,country);
         }
         public static int Order_Add(Order data)
         {

@@ -20,14 +20,14 @@ namespace LiteCommerce.Admin.Controllers
         /// Danh sách đơn hàng
         /// </summary>
         /// <returns></returns>
-        public ActionResult Index(int page = 1, string searchValue = "")
+        public ActionResult Index(int page = 1, string searchValue = "",string country = "")
         {
             var model = new Models.OrderPagingationResult()
             {
                 Page = page,
                 PageSize = AppSettings.DefaultPageSize,
-                RowCount = SaleManagementBLL.Order_Count(searchValue),
-                Data = SaleManagementBLL.Order_List(page, AppSettings.DefaultPageSize, searchValue),
+                RowCount = SaleManagementBLL.Order_Count(searchValue,country),
+                Data = SaleManagementBLL.Order_List(page, AppSettings.DefaultPageSize, searchValue,country),
                 SearchValue = searchValue,
             };
             return View(model);

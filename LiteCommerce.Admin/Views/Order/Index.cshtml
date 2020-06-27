@@ -11,10 +11,16 @@
     <!-- form start -->
     <form role="form" action="~/Order" method="get">
         <div class="box-body">
-            <div class="input-group input-group-sm">
-                <input type="text" name="searchValue" class="form-control" placeholder="Type anything" value="@Model.SearchValue">
+            <div class="form-group col-sm-6">
+                @Html.DropDownListFor(m=> m.country, SelectListHelper.ListOfCountries(),
+                            new { @class = "form-control", @id = "selectCountry" })
+               
+
+            </div>
+            <div class="input-group col-sm-6">
+                <input type="text" class="form-control" placeholder="Type anything" name="searchValue" value="@Model.SearchValue">
                 <span class="input-group-btn">
-                    <button onclick="myFunction()" class="btn btn-primary btn-flat"><i class="fa fa-search"></i></button>
+                    <button type="submit" class="btn btn-primary btn-flat"><i class="fa fa-search"></i></button>
                 </span>
             </div>
         </div>
@@ -30,7 +36,7 @@
         </div>
         <div class="col-sm-4">
             <div class="pull-right">
-                <button type="submit" name="method" value="delete" class="btn btn-sm btn-danger"><i class="fa fa-trash-o"></i> Delete</button>
+                <button type="button" onclick="myFunction()" name="method" value="delete" class="btn btn-sm btn-danger"><i class="fa fa-trash-o"></i> Delete</button>
             </div>
         </div>
     </div>
@@ -91,35 +97,42 @@
             <ul class="pagination pagination-sm no-margin pull-right">
                 @if (Model.Page != 1)
                 {
-                    <li><a href="~/Order?page=1&searchValue=@Model.SearchValue">First</a></li>
+                    <li><a href="~/Order?page=1&searchValue=@Model.SearchValue&country=@Model.country">First</a></li>
                     <li>
-                        <a href="~/Order?page=@(Model.Page-1)&searchValue=@Model.SearchValue"><span><i class="fa fa-angle-double-left"></i></span></a>
+                        <a href="~/Order?page=@(Model.Page-1)&searchValue=@Model.SearchValue&country=@Model.country"><span><i class="fa fa-angle-double-left"></i></span></a>
                     </li>
                 }
                 @for (int page = 1; page <= Model.PageCount; page++)
                 {
-
                     if (Model.Page == page)
                     {
-                        <li class="active"><a href="~/Order?page=@page&searchValue=@Model.SearchValue">@page</a></li>
+                        <li class="active"><a href="~/Product?page=@page&searchValue=@Model.SearchValue&country=@Model.country">@page</a></li>
                     }
                     else if (page == (Model.Page + 1) || page == (Model.Page + 2) || page == Model.PageCount)
                     {
-                        <li><a href="~/Order?page=@page&searchValue=@Model.SearchValue">@page</a></li>
+                        <li><a href="~/Order?page=@page&searchValue=@Model.SearchValue&country=@Model.country">@page</a></li>
                     }
                     else if (page == (Model.Page - 1) || page == (Model.Page - 2))
                     {
-                        <li><a href="~/Order?page=@page&searchValue=@Model.SearchValue">@page</a></li>
+                        <li><a href="~/Order?page=@page&searchValue=@Model.SearchValue&country=@Model.country">@page</a></li>
                     }
                     else if (page == (Model.PageCount - 1))
                     {
                         <li class="disabled"><span><i class="fa fa-ellipsis-h"></i></span></li>
                     }
-
                 }
+                @if (Model.Page < Model.PageCount)
+                {
+                    <li>
+                        <a href="~/Order?page=@(Model.Page+1)&searchValue=@Model.SearchValue&country=@Model.country">
+                            <span><i class="fa fa-angle-double-right"></i></span>
+                        </a>
+                    </li>
+                }
+
                 @if (Model.Page != Model.PageCount)
                 {
-                    <li><a href="~/Order?page=@Model.PageCount&@paramSearch">Last</a></li>
+                    <li><a href="~/Product?page=@Model.PageCount&searchValue=@Model.SearchValue">Last</a></li>
                 }
             </ul>
         </div>

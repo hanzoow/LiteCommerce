@@ -43,9 +43,9 @@ namespace LiteCommerce.DataLayers
         /// <param name="pageSize"></param>
         /// <param name="searchValue"></param>
         /// <returns></returns>
-        List<Order> List(int page, int pageSize, string searchValue);
+        List<Order> List(int page, int pageSize, string searchValue,string country);
 
-        int Count(string searchValue);
+        int Count(string searchValue,string country);
 
         List<OrderDetails> GetOrderDetails(string orderID);
         bool UpdateOrderDetails(string orderID,string[] productIds, string[] unitPrice, string[] quantity, string[] discount);

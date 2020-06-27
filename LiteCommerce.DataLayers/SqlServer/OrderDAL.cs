@@ -87,7 +87,7 @@ namespace LiteCommerce.DataLayers.SqlServer
             return orderId;
         }
 
-        public int Count(string searchValue)
+        public int Count(string searchValue,string country)
         {
             int dem;
             if (!string.IsNullOrEmpty(searchValue))
@@ -99,11 +99,18 @@ namespace LiteCommerce.DataLayers.SqlServer
                 {
                     cmd.CommandText = @"SELECT count(*)
                                         FROM Orders
-                                        WHERE(@searchValue = N'') OR (ShipCity like @searchValue)";
+                                        WHERE(
+                                                (@searchValue = N'')
+                                                OR (ShipAddress like @searchValue)
+                                            )
+                                            AND(
+                                                (@country = N'')
+                                                OR (ShipCountry = @country)
+                                            )";
                     cmd.CommandType = CommandType.Text;
                     cmd.Connection = connection;
                     cmd.Parameters.AddWithValue("@searchValue", searchValue);
-
+                    cmd.Parameters.AddWithValue("@country", country);
                     dem = Convert.ToInt32(cmd.ExecuteScalar());
                 }
                 connection.Close();
@@ -217,6 +224,7 @@ namespace LiteCommerce.DataLayers.SqlServer
             return data;
         }
 
+
         /// <summary>
         /// 
         /// </summary>
@@ -224,7 +232,7 @@ namespace LiteCommerce.DataLayers.SqlServer
         /// <param name="pageSize"></param>
         /// <param name="searchValue"></param>
         /// <returns></returns>
-        public List<Order> List(int page, int pageSize, string searchValue)
+        public List<Order> List(int page, int pageSize, string searchValue,string country)
         {
             List<Order> data = new List<Order>();
             if (!string.IsNullOrEmpty(searchValue))
@@ -238,7 +246,14 @@ namespace LiteCommerce.DataLayers.SqlServer
                                         FROM(
                                             SELECT *, ROW_NUMBER() OVER(ORDER BY OrderID) AS RowNumber
                                             FROM Orders
-                                            WHERE(@searchValue = N'')
+                                            WHERE(
+				                                    (@searchValue = N'')
+				                                    OR (ShipAddress like @searchValue)
+				                                    )
+                                                AND (
+                                                    (@country = N'')
+				                                    OR (ShipCountry = @country)
+                                                    )
                                         ) AS t WHERE t.RowNumber BETWEEN (@page - 1) * @pageSize + 1 AND @page * @pageSize
                                         ORDER BY t.RowNumber";
                     cmd.CommandType = CommandType.Text;
@@ -246,6 +261,7 @@ namespace LiteCommerce.DataLayers.SqlServer
                     cmd.Parameters.AddWithValue("@page", page);
                     cmd.Parameters.AddWithValue("@pageSize", pageSize);
                     cmd.Parameters.AddWithValue("@searchValue", searchValue);
+                    cmd.Parameters.AddWithValue("@country", country);
                     using (SqlDataReader dbReader = cmd.ExecuteReader(CommandBehavior.CloseConnection))
                     {
                         while (dbReader.Read())
