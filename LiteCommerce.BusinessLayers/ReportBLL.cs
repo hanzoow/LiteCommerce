@@ -25,5 +25,10 @@ namespace LiteCommerce.BusinessLayers
         {
             return ReportDB.GetListOrderShipOk();
         }
+
+        public static int Report_SumPriceProduct()
+        {
+            return ReportDB.SumPriceProduct();
+        }
     }
 }

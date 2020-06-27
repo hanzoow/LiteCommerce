@@ -153,5 +153,22 @@ namespace LiteCommerce.Admin.Controllers
                 CatalogBLL.Customer_Delete(customerIDs);
             return RedirectToAction("Index");
         }
+
+        public ActionResult Detail(string id = "")
+        {
+            if (string.IsNullOrEmpty(id))
+            {
+                return RedirectToAction("Index");
+            }
+            try
+            {
+                Customer model = CatalogBLL.Customer_Get(id);
+                return View(model);
+            }
+            catch (Exception e)
+            {
+                return RedirectToAction("Index");
+            }
+        }
     }
 }

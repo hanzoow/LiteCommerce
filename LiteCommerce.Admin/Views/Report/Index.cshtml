@@ -41,7 +41,7 @@
             <br />
             <!-- small box -->
             <table class="table table-bordered table-hover">
-                <thead>
+                <thead style="background-color:darkgray">
                     <tr>
                         <th>Quốc gia</th>
                         <th>Số lần chuyển đến</th>
@@ -68,8 +68,8 @@
             <label>Thống kê các đơn hàng được giao gần đây</label>
             <br />
             <!-- small box -->
-            <table class="table table-bordered table-hover">
-                <thead>
+            <table class="table table-bordered  table-hover">
+                <thead style="background-color:darkgray">
                     <tr>
                         <th>Ngày yêu cầu giao hàng</th>
                         <th>Ngày ship đến</th>
@@ -112,83 +112,30 @@
 </div>
 <div id="products">
     <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-12">
             <!-- small box -->
             <div class="small-box bg-blue">
                 <div class="inner">
-                    <h3>150</h3>
-                    <p>New Orders</p>
+                    <p>Có tổng cộng :</p> <h3> @Model.sumOfProducts Products</h3>
                 </div>
                 <div class="icon">
                     <i class="ion ion-bag"></i>
                 </div>
-                <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                <a href="~/Product" class="small-box-footer">Xem chi tiết <i class="fa fa-arrow-circle-right"></i></a>
             </div>
         </div>
         <!-- ./col -->
-        <div class="col-md-6">
-            <!-- small box -->
-            <div class="small-box bg-success">
-                <div class="inner">
-                    <h3>53<sup style="font-size: 20px">%</sup></h3>
-                    <p>Bounce Rate</p>
-                </div>
-                <div class="icon">
-                    <i class="ion ion-stats-bars"></i>
-                </div>
-                <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
-            </div>
-        </div>
         <!-- ./col -->
     </div>
     <div class="row">
         <div class="col-md-6">
             <div class="panel panel-primary">
-                <div class="box-header text-bold">Tổng số lượng:</div>
+                <div class="box-header text-bold">Tổng giá các sản phẩm:</div>
                 <div class="box-body">
-                    <div class="col-md-6">
-                        Tên sản phẩm:
-                    </div>
-                    <div class="col-md-6">
-                        Số lượng:
-                    </div>
+                    <span>@string.Format("{0:C2}", Convert.ToDecimal(Model.SumOfPriceProducts) / 100)</span>
                 </div>
             </div>
-            <div class="panel panel-success">
-                <div class="box-header text-bold">Số lượng bán ra</div>
-                <div class="box-body">
-                    <div class="col-md-6">
-                        Tên sản phẩm:
-                    </div>
-                    <div class="col-md-6">
-                        Số lượng:
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-6">
-            <div class="panel panel-warning">
-                <div class="box-header text-bold">Số lượng bán ra</div>
-                <div class="box-body">
-                    <div class="col-md-6">
-                        Tên Sản phẩm:
-                    </div>
-                    <div class="col-md-6">
-                        Số lượng:
-                    </div>
-                </div>
-            </div>
-            <div class="panel panel-danger">
-                <div class="box-header text-bold">Sản phẩm được mua nhiều nhất:</div>
-                <div class="box-body">
-                    <div class="col-md-6">
-                        Tên sản phẩm:
-                    </div>
-                    <div class="col-md-6">
-                        Số lượng:
-                    </div>
-                </div>
-            </div>
+            
         </div>
     </div>
 </div>

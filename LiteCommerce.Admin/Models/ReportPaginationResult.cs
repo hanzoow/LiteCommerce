@@ -11,5 +11,7 @@ namespace LiteCommerce.Admin.Models
         public int sumOfOrders;
         public List<Report> DataSum;
         public List<Report> DataShipOk;
+        public int sumOfProducts;
+        public int SumOfPriceProducts;
     }
 }

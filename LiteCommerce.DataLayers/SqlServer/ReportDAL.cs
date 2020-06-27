@@ -79,5 +79,24 @@ namespace LiteCommerce.DataLayers.SqlServer
             }
             return data;
         }
+
+        public int SumPriceProduct()
+        {
+            int sum = 0;
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.CommandText = @"SELECT SUM(UnitPrice) FROM Products";
+                    cmd.CommandType = CommandType.Text;
+                    cmd.Connection = connection;
+
+                    sum = Convert.ToInt32(cmd.ExecuteScalar());
+                }
+                connection.Close();
+            }
+            return sum;
+        }
     }
 }

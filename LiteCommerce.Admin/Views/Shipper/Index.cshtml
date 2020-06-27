@@ -59,7 +59,10 @@
                             <td>
                                 <span style="display:block"><i class="fa fa-phone"></i> @item.Phone</span>                            
                             </td>
-                            <td><a href="~/Shipper/Input/@item.ShipperID" class="btn btn-sm btn-primary"><i class="fa fa-pencil"></i></a></td>
+                            <td>
+                                <a href="~/Shipper/Detail/@item.ShipperID" class="btn btn-sm btn-success" data-toggle="tooltip" title="View"><i class="fa fa-eye"></i></a>
+                                <a href="~/Shipper/Input/@item.ShipperID" class="btn btn-sm btn-primary"><i class="fa fa-pencil"></i></a>
+                            </td>
                         </tr>
                     }
                 </tbody>

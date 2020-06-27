@@ -169,6 +169,10 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Images\Customer.jpg" />
+    <Content Include="Images\Hmm.jpg" />
+    <Content Include="Images\Shipper.png" />
+    <Content Include="Images\Supplier.jpg" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
@@ -7265,10 +7269,12 @@
     <Content Include="Views\Order\Detail.cshtml" />
     <Content Include="Views\Order\OrderDetail.cshtml" />
     <Content Include="Views\Redirect\Index.cshtml" />
+    <Content Include="Views\Supplier\Detail.cshtml" />
+    <Content Include="Views\Shipper\Detail.cshtml" />
+    <Content Include="Views\Customer\Detail.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Images\" />
     <Folder Include="Views\_Test\" />
   </ItemGroup>
   <ItemGroup>

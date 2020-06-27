@@ -71,7 +71,10 @@
                                 <span style="display:block"><i class="fa fa-fax"></i> @item.Fax</span>
                                 <span style="display:block"><i class="fa fa-globe"></i> @item.HomePage</span>
                             </td>
-                            <td><a href="~/Supplier/Input/@item.SupplierID" class="btn btn-sm btn-primary"><i class="fa fa-pencil"></i></a></td>
+                            <td>
+                                <a href="~/Supplier/Detail/@item.SupplierID" class="btn btn-sm btn-success" data-toggle="tooltip" title="View"><i class="fa fa-eye"></i></a>
+                                <a href="~/Supplier/Input/@item.SupplierID" class="btn btn-sm btn-primary"><i class="fa fa-pencil"></i></a>
+                            </td>
                         </tr>
                     }
                 </tbody>

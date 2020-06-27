@@ -138,5 +138,22 @@ namespace LiteCommerce.Admin.Controllers
             }
             return RedirectToAction("Index");
         }
+
+        public ActionResult Detail(string id = "")
+        {
+            if (string.IsNullOrEmpty(id))
+            {
+                return RedirectToAction("Index");
+            }
+            try
+            {
+                Supplier model = CatalogBLL.Supplier_Get(Convert.ToInt32(id));
+                return View(model);
+            }
+            catch (Exception e)
+            {
+                return RedirectToAction("Index");
+            }
+        }
     }
 }

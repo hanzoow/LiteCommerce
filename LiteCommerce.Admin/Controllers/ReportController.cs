@@ -24,9 +24,11 @@ namespace LiteCommerce.Admin.Controllers
             {
                 Page = page,
                 PageSize = AppSettings.DefaultPageSize,
-                sumOfOrders = SaleManagementBLL.Order_Count("",""),
+                sumOfOrders = SaleManagementBLL.Order_Count("", ""),
                 DataSum = ReportBLL.Report_TimeOrdered(),
-                DataShipOk = ReportBLL.Report_ListShipOk()
+                DataShipOk = ReportBLL.Report_ListShipOk(),
+                sumOfProducts = CatalogBLL.Product_Count("", "", ""),
+                SumOfPriceProducts = ReportBLL.Report_SumPriceProduct()
             };
             return View(model);
         }

@@ -16,5 +16,7 @@ namespace LiteCommerce.DomainModels
         public string requiredDate;
         public string shippedDate;
         public string isShipOk;
+
+        public int sumOfProducts;
     }
 }

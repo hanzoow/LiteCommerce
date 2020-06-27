@@ -11,5 +11,7 @@ namespace LiteCommerce.DataLayers
     {
         List<Report> GetTimeOrdered();
         List<Report> GetListOrderShipOk();
+
+        int SumPriceProduct(); 
     }
 }
