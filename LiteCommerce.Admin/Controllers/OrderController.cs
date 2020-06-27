@@ -64,8 +64,14 @@ namespace LiteCommerce.Admin.Controllers
                 {
                     model.ShippedDate = null;
                 }
+                if (orderDate >= requiredDate)
+                {
+                    ModelState.AddModelError("Wrong", "Ngày yêu cầu giao hàng phải muộn hơn ngày đặt hàng!");
+                    ViewBag.ConfirmButton = "Create";
+                    return View(model);
+                }
                 //Kiểm tra có tồn tại bất kỳ lỗi nào hay không
-                
+
                 //Đưa dữ liệu vào CSDL
                 int orderID = SaleManagementBLL.Order_Add(model);
                 return RedirectToAction("Input/" + orderID);
@@ -116,6 +122,7 @@ namespace LiteCommerce.Admin.Controllers
             {
                 DateTime orderDate =Convert.ToDateTime(model.OrderDate);
                 DateTime requiredDate = Convert.ToDateTime(model.RequiredDate);
+                DateTime shippedDate = Convert.ToDateTime(model.ShippedDate);
                 //Validation dữ liệu                
                 if (string.IsNullOrEmpty(model.OrderDate))
                 {
@@ -125,9 +132,17 @@ namespace LiteCommerce.Admin.Controllers
                 {
                     model.RequiredDate = "";
                 }
-                if (DateTime.Compare(orderDate, requiredDate) > 0)
+                if (orderDate >= requiredDate)
                 {
-                    ViewBag.WrongDate = "Ngày order phải sớm hơn ngày yêu cầu giao order!";
+                    ModelState.AddModelError("Wrong", "Ngày yêu cầu giao hàng phải muộn hơn ngày đặt hàng ít nhất 1 ngày!");
+                    ViewBag.ConfirmButton = "Create";
+                    return View(model);
+                }
+                if(shippedDate < requiredDate)
+                {
+                    ModelState.AddModelError("WrongShipDate", "Ngày giao hàng phải muộn hơn ngày đặt hàng ít nhất 1 ngày!");
+                    ViewBag.ConfirmButton = "Save";
+                    return View(model);
                 }
                 //Kiểm tra có tồn tại bất kỳ lỗi nào hay không
                 if (!ModelState.IsValid)

@@ -7,6 +7,7 @@
 
 
 <div class="box box-primary">
+
     <form role="form" action="~/Order/Create" method="post" enctype="multipart/form-data">
         <div class="box-header with-border">
             <div class="box-tools pull-right">
@@ -58,12 +59,14 @@
                         <label>Required date:</label>
                         @Html.TextBoxFor(m => m.RequiredDate, "{0:dd/MM/yyyy}", new { @Value = Model.RequiredDate, @class = "form-control", @type = "date" })
                         @Html.ValidationMessageFor(m => m.RequiredDate, "", new { @class = "text-danger" })
+                        @Html.ValidationMessage("Wrong",new { style="color:red"})
+
                     </div>
                 </div>
                 <div class="col-sm-4">
                     <div class="form-group">
                         <label>Shipped date:</label>
-                        @Html.TextBoxFor(m => m.ShippedDate, "{0:dd/MM/yyyy}", new {  @class = "form-control", disabled = "disabled", @type = "date" })
+                        @Html.TextBoxFor(m => m.ShippedDate, "{0:dd/MM/yyyy}", new { @class = "form-control", disabled = "disabled", @type = "date" })
                     </div>
                 </div>
             </div>

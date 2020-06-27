@@ -28,16 +28,19 @@ namespace LiteCommerce.DomainModels
         /// 
         /// </summary>
         [Required]
+        [DataType(DataType.DateTime)]
         public string OrderDate { get; set; }
         /// <summary>
         /// 
         /// </summary>
         [Required]
+        [DataType(DataType.DateTime)]
         public string RequiredDate { get; set; }
         /// <summary>
         /// 
         /// </summary>
         [Required]
+        [DataType(DataType.DateTime)]
         public string ShippedDate { get; set; }
         /// <summary>
         /// 
