@@ -57,5 +57,6 @@ namespace LiteCommerce.DataLayers
         bool CheckEmail(int id, string email, string method);
 
         List<Employee> ListHelper();
+
     }
 }

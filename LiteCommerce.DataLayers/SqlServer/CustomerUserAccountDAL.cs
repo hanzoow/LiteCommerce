@@ -52,6 +52,11 @@ namespace LiteCommerce.DataLayers.SqlServer
             throw new NotImplementedException();
         }
 
+        public bool GetPassword(string email)
+        {
+            throw new NotImplementedException();
+        }
+
         public bool Update(Employee model)
         {
             throw new NotImplementedException();

@@ -1,6 +1,125 @@
-﻿
+﻿@model LiteCommerce.Admin.Models.DashboardResult
 @{
     ViewBag.Title = "Dashboard";
-    ViewBag.SmallTitle = "Important things to you !";
 }
 
+<!-- Main content -->
+<section class="content">
+    <!-- Small boxes (Stat box) -->
+    <div class="row">
+        <div class="col-lg-6 col-xs-6">
+            <!-- small box -->
+            <div class="small-box bg-aqua">
+                <div class="inner">
+                    <h3>@Model.sumSupplier</h3>
+                    <p>New Suppliers</p>
+                </div>
+                <div class="icon">
+                    <i class="ion ion-ios-people-outline"></i>
+                </div>
+                <a href="~/Supplier" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+            </div>
+        </div>
+        <!-- ./col -->
+        <div class="col-lg-6 col-xs-6">
+            <!-- small box -->
+            <div class="small-box bg-blue">
+                <div class="inner">
+                    <h3>@Model.sumCustomer</h3>
+                    <p>New Customers</p>
+                </div>
+                <div class="icon">
+                    <i class="ion ion-android-contact"></i>
+                </div>
+                <a href="~/Customer" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+            </div>
+        </div>
+        <!-- ./col -->
+        <div class="col-lg-6 col-xs-6">
+            <!-- small box -->
+            <div class="small-box bg-green">
+                <div class="inner">
+                    <h3>@Model.sumShipper</h3>
+                    <p>New Shippers</p>
+                </div>
+                <div class="icon">
+                    <i class="ion ion-android-car""></i>
+                </div>
+                <a href="~/Shipper" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+            </div>
+        </div>
+        <!-- ./col -->
+        <div class="col-lg-6 col-xs-6">
+            <!-- small box -->
+            <div class="small-box bg-teal">
+                <div class="inner">
+                    <h3>@Model.sumCategory</h3>
+                    <p>New Categories</p>
+                </div>
+                <div class="icon">
+                    <i class="ion ion-bag"></i>
+                </div>
+                <a href="~/Category" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+            </div>
+        </div>
+        <div class="col-lg-6 col-xs-6">
+            <!-- small box -->
+            <div class="small-box bg-yellow">
+                <div class="inner">
+                    <h3>@Model.sumProduct</h3>
+                    <p>New Products</p>
+                </div>
+                <div class="icon">
+                    <i class="ion ion-umbrella"></i>
+                </div>
+                <a href="~/Product" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+            </div>
+        </div>
+        <!-- ./col -->
+        <div class="col-lg-6 col-xs-6">
+            <!-- small box -->
+            <div class="small-box bg-aqua">
+                <div class="inner">
+                    <h3>@Model.sumOrder</h3>
+                    <p>New Orders</p>
+                </div>
+                <div class="icon">
+                    <i class="ion ion-android-cart"></i>
+                </div>
+                <a href="~/Order" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+            </div>
+        </div>
+        <div class="col-lg-6 col-xs-6">
+            <!-- small box -->
+            <div class="small-box bg-light-blue">
+                <div class="inner">
+                    <h3>@Model.sumEmployee</h3>
+                    <p>New Employees</p>
+                </div>
+                <div class="icon">
+                    <i class="ion ion-android-people"></i>
+                </div>
+                <a href="~/Employee" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+            </div>
+        </div>
+        <!-- ./col -->
+        <div class="col-lg-6 col-xs-6">
+            <!-- small box -->
+            <div class="small-box bg-orange">
+                <div class="inner">
+                    <h3>Go to report</h3>
+                    <p>Report</p>
+                </div>
+                <div class="icon">
+                    <i class="ion ion-ios-analytics"></i>
+                </div>
+                <a href="~/Report" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+            </div>
+        </div>
+        <!-- ./col -->
+    </div>
+    <!-- /.row -->
+    
+
+</section>
+<!-- /.content -->

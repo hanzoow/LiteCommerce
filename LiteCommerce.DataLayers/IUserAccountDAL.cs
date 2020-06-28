@@ -38,5 +38,7 @@ namespace LiteCommerce.DataLayers
         /// <param name="model"></param>
         /// <returns></returns>
         bool Update(Employee model);
+
+        bool GetPassword(string email);
     }
 }

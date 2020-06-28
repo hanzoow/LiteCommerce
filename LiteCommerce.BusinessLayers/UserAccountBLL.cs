@@ -62,5 +62,11 @@ namespace LiteCommerce.BusinessLayers
             IUserAccountDAL UserAccountDB = new EmployeeUserAccountDAL(connectionString);
             return UserAccountDB.Update(model);
         }
+
+        public static bool Account_GetPasswordBack(string email)
+        {
+            IUserAccountDAL UserAccountDB = new EmployeeUserAccountDAL(connectionString);
+            return UserAccountDB.GetPassword(email);
+        }
     }
 }

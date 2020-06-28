@@ -77,5 +77,8 @@ namespace LiteCommerce.DomainModels
         /// 
         /// </summary>
         public string PhotoPath { get; set; }
+
+        public string[] GroupName { get; set; }
+
     }
 }

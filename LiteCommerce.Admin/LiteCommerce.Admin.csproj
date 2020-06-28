@@ -149,6 +149,7 @@
     <Compile Include="Models\AttributeResult.cs" />
     <Compile Include="Models\CategoryResult.cs" />
     <Compile Include="Models\CustomerPaginationResult.cs" />
+    <Compile Include="Models\DashboardResult.cs" />
     <Compile Include="Models\EmployeePaginationResult.cs" />
     <Compile Include="Models\OrderDetailsResult.cs" />
     <Compile Include="Models\OrderPagingationResult.cs" />
@@ -169,6 +170,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Images\Category.jpg" />
     <Content Include="Images\Customer.jpg" />
     <Content Include="Images\Hmm.jpg" />
     <Content Include="Images\Shipper.png" />
@@ -7272,6 +7274,7 @@
     <Content Include="Views\Supplier\Detail.cshtml" />
     <Content Include="Views\Shipper\Detail.cshtml" />
     <Content Include="Views\Customer\Detail.cshtml" />
+    <Content Include="Views\Category\Detail.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

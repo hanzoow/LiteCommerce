@@ -162,6 +162,7 @@ namespace LiteCommerce.DataLayers.SqlServer
                             HomePhone = Convert.ToString(dbReader["HomePhone"]),
                             Notes = Convert.ToString(dbReader["Notes"]),
                             PhotoPath = Convert.ToString(dbReader["PhotoPath"]),
+                            GroupName = Convert.ToString(dbReader["GroupName"]).Split(new char[] { ',' })
                         };
                     }
                 }
@@ -228,6 +229,7 @@ namespace LiteCommerce.DataLayers.SqlServer
                                 HomePhone = Convert.ToString(dbReader["HomePhone"]),
                                 Notes = Convert.ToString(dbReader["Notes"]),
                                 PhotoPath = Convert.ToString(dbReader["PhotoPath"]),
+                                GroupName= Convert.ToString(dbReader["GroupName"]).Split(new char[] { ',' })
                             });
                         }
                     }
@@ -260,7 +262,8 @@ namespace LiteCommerce.DataLayers.SqlServer
                                         Country = @Country,
                                         HomePhone = @HomePhone,
                                         PhotoPath = @PhotoPath,
-                                        Notes = @Notes
+                                        Notes = @Notes,
+                                        GroupName = @GroupName
                                     WHERE EmployeeID = @EmployeeID";
                 cmd.CommandType = CommandType.Text;
                 cmd.Connection = connection;
@@ -277,7 +280,7 @@ namespace LiteCommerce.DataLayers.SqlServer
                 cmd.Parameters.AddWithValue("@HomePhone", data.HomePhone);
                 cmd.Parameters.AddWithValue("@PhotoPath", data.PhotoPath);
                 cmd.Parameters.AddWithValue("@Notes", data.Notes);
-
+                cmd.Parameters.AddWithValue("@Groupname", string.Join(",", data.GroupName));
                 rowsAffected = Convert.ToInt32(cmd.ExecuteNonQuery());
                 connection.Close();
             }
@@ -394,5 +397,6 @@ namespace LiteCommerce.DataLayers.SqlServer
             }
             return list;
         }
+
     }
 }

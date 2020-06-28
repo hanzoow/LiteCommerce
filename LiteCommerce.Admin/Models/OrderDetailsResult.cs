@@ -12,6 +12,5 @@ namespace LiteCommerce.Admin.Models
 
         public int OrderID;
 
-        public Product Product;
     }
 }

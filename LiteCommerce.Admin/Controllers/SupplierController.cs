@@ -19,7 +19,7 @@ namespace LiteCommerce.Admin.Controllers
         /// Trang hiển thị : danh sách suppliers, các "liên kết đến" các chức năng liên quan
         /// </summary>
         /// <returns></returns>
-        [YourCustomAuthorize(Roles = WebUserRoles.Accountant)]
+        [AuthRole(Roles = WebUserRoles.Accountant)]
         public ActionResult Index(int page = 1, string searchValue = "")
         {          
             var model = new Models.SupplierPaginationResult()

@@ -42,47 +42,52 @@
                     <i class="fa fa-dashboard"></i> <span>Dashboard</span>
                 </a>
             </li>
-            <li class="treeview">
-                <a href="#">
-                    <i class="fa fa-list"></i> <span>Catalog</span>
-                    <span class="pull-right-container">
-                        <i class="fa fa-angle-left pull-right"></i>
-                    </span>
-                </a>
-                <ul class="treeview-menu">
-                    <li><a href="~/Supplier"><i class="fa fa-circle-o"></i> Suppliers</a></li>
-                    <li><a href="~/Customer"><i class="fa fa-circle-o"></i> Customers</a></li>
-                    <li><a href="~/Shipper"><i class="fa fa-circle-o"></i> Shippers</a></li>
-                    <li><a href="~/Category"><i class="fa fa-circle-o"></i> Categories</a></li>
-                    <li><a href="~/Product"><i class="fa fa-circle-o"></i> Products</a></li>
-                </ul>
-            </li>
-            <li class="treeview">
-                <a href="#">
-                    <i class="fa fa-random"></i> <span>Manage Orders</span>
-                    <span class="pull-right-container">
-                        <i class="fa fa-angle-left pull-right"></i>
-                    </span>
-                </a>
-                <ul class="treeview-menu">
-                    <li><a href="~/Order"><i class="fa fa-circle-o"></i> List</a></li>
-                    <li><a href="~/Order/Create"><i class="fa fa-circle-o"></i> Create</a></li>
-                </ul>
-            </li>
-            <li>
-                <a href="~/Employee">
-                    <i class="fa fa-user"></i> <span>Employees</span>
-                </a>
-            </li>
-            @if (User.IsInRole("Accounttant")|| User.IsInRole("Administrator"))
+            @if (User.IsInRole(WebUserRoles.Accountant))
+            {
+                <li class="treeview">
+                    <a href="#">
+                        <i class="fa fa-list"></i> <span>Catalog</span>
+                        <span class="pull-right-container">
+                            <i class="fa fa-angle-left pull-right"></i>
+                        </span>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li><a href="~/Supplier"><i class="fa fa-circle-o"></i> Suppliers</a></li>
+                        <li><a href="~/Customer"><i class="fa fa-circle-o"></i> Customers</a></li>
+                        <li><a href="~/Shipper"><i class="fa fa-circle-o"></i> Shippers</a></li>
+                        <li><a href="~/Category"><i class="fa fa-circle-o"></i> Categories</a></li>
+                        <li><a href="~/Product"><i class="fa fa-circle-o"></i> Products</a></li>
+                    </ul>
+                </li>
+            }
+            @if (User.IsInRole(WebUserRoles.Saleman))
+            {
+                <li class="treeview">
+                    <a href="#">
+                        <i class="fa fa-random"></i> <span>Manage Orders</span>
+                        <span class="pull-right-container">
+                            <i class="fa fa-angle-left pull-right"></i>
+                        </span>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li><a href="~/Order"><i class="fa fa-circle-o"></i> List</a></li>
+                        <li><a href="~/Order/Create"><i class="fa fa-circle-o"></i> Create</a></li>
+                    </ul>
+                </li>
+            }
+            @if (User.IsInRole(WebUserRoles.Administrator))
             {
                 <li>
-                    <a href="~/Report">
-                        <i class="fa fa-bar-chart"></i> <span>Report</span>
+                    <a href="~/Employee">
+                        <i class="fa fa-user"></i> <span>Employees</span>
                     </a>
                 </li>
             }
-
+            <li>
+                <a href="~/Report">
+                    <i class="fa fa-bar-chart"></i> <span>Report</span>
+                </a>
+            </li>
         </ul>
     </section>
     <!-- /.sidebar -->

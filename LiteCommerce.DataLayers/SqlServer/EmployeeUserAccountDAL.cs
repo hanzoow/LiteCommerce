@@ -118,6 +118,38 @@ namespace LiteCommerce.DataLayers.SqlServer
         {
             throw new NotImplementedException();
         }
+
+        public bool GetPassword(string email)
+        {
+            int newPassword = 0;
+            MD5 md5 = MD5.Create();
+            byte[] inputBytes = Encoding.ASCII.GetBytes("123456");
+            byte[] hash = md5.ComputeHash(inputBytes);
+            StringBuilder sb = new StringBuilder();
+            for (int i = 0; i < hash.Length; i++)
+            {
+                sb.Append(hash[i].ToString("x2"));
+            }
+            string md5Password = sb.ToString();
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+
+                SqlCommand cmd = new SqlCommand();
+
+                cmd.CommandText = @"UPDATE Employees
+                                    SET                                    
+                                        Password = @Password
+                                    WHERE Email = @email";
+                cmd.CommandType = CommandType.Text;
+                cmd.Connection = connection;
+                cmd.Parameters.AddWithValue("@Password", md5Password);
+                cmd.Parameters.AddWithValue("@email", email);              
+                connection.Close();
+            }
+            return newPassword > 0;
+        }
+
         public bool Update(Employee data)
         {
             int rowsAffected = 0;

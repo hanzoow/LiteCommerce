@@ -131,6 +131,49 @@
                 <input type="file" name="uploadPhoto" class="form-control">
                 <input type="hidden" name="PhotoPath" value="@Model.PhotoPath" />
             </div>
+            <div class="form-check-inline">
+                <div>
+                    <label>Roles</label>
+                </div>
+                <div style="margin-left:10px;">
+                    @if (@Model.GroupName == null)
+                    {
+                        foreach (string roles in SelectListHelper.ListOfRoles())
+                        {
+                            <label class="form-check-label" for="check1" style="margin-right:5px;">
+                                <input type="checkbox" class="form-check-input" id="check1" name="GroupName" value="@roles" style="margin-right:10px;">@roles
+                            </label>
+                        }
+                    }
+                    else
+                    {
+                        foreach (string roles in SelectListHelper.ListOfRoles())
+                        {
+                            int i = 0;
+                            foreach (string name in @Model.GroupName)
+                            {
+                                i++;
+                                if (name == roles)
+                                {
+                                    <label class="form-check-label" for="check1" style="margin-right:5px;">
+                                        <input type="checkbox" class="form-check-input" id="check1" name="GroupName" value="@roles" checked style="margin-right:10px;">@roles
+                                    </label>
+                                    break;
+                                }
+                                else
+                                {
+                                    if (i == Model.GroupName.Length)
+                                    {
+                                        <label class="form-check-label" for="check1" style="margin-right:5px;">
+                                            <input type="checkbox" class="form-check-input" id="check1" name="GroupName" value="@roles" style="margin-right:10px;">@roles
+                                        </label>
+                                    }
+                                }
+                            }
+                        }
+                    }
+                </div>
+            </div>
         </div>
         @*<div class="text-danger">
             @Html.ValidationSummary("");

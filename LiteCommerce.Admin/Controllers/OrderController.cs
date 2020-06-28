@@ -7,13 +7,14 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Web;
 using System.Web.Mvc;
+using static LiteCommerce.Admin.WebUserPrincipal;
 
 namespace LiteCommerce.Admin.Controllers
 {
     /// <summary>
     /// 
     /// </summary>
-    [Authorize(Roles = WebUserRoles.Saleman)]
+    [AuthRole(Roles = WebUserRoles.Saleman)]
     public class OrderController : Controller
     {
         /// <summary>
@@ -253,7 +254,6 @@ namespace LiteCommerce.Admin.Controllers
                 {
                     Data = SaleManagementBLL.Order_GetDetailsList(id),
                     OrderID = Convert.ToInt32(id),
-                    Product = null
                 };
                 return View(model);
             }

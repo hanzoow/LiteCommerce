@@ -344,11 +344,15 @@ namespace LiteCommerce.DataLayers.SqlServer
                 connection.Open();
 
                 SqlCommand cmd = new SqlCommand();
-                cmd.CommandText = @"DELETE FROM OrderDetails WHERE OrderID = @orderID";
+                cmd.CommandText = @"DELETE FROM OrderDetails WHERE OrderID = @OrderID AND ProductID = @ProductID";
                 cmd.CommandType = CommandType.Text;
                 cmd.Connection = connection;
-                cmd.Parameters.Add("@orderID", SqlDbType.Int).Value = Convert.ToInt32(orderID);
-                cmd.ExecuteNonQuery();
+                cmd.Parameters.AddWithValue("@orderID",orderID);
+                for(int j = 0; j < unitPrice.Length; j++)
+                {
+                    cmd.Parameters["@ProductID"].Value = Convert.ToInt32(productIDs[j]);
+                    result += cmd.ExecuteNonQuery();
+                }
 
                 SqlCommand cmd2 = new SqlCommand();
                 cmd2.CommandText = @"INSERT INTO OrderDetails (OrderID,ProductID,UnitPrice,Quantity,Discount) VALUES (@OrderID,@ProductID,@UnitPrice,@Quantity,@Discount)";

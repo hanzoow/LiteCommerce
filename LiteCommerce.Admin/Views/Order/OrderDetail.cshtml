@@ -35,7 +35,7 @@
     </div>
     <div class="box-body">
         <form action="~/Order/OrderDetail" method="post">
-            <input type="hidden" name="ProductID" value="@Model.OrderID" />
+            <input type="hidden" name="OrderID" value="@Model.OrderID" />
             <table class="table table-bordered table-hover">
                 <thead>
                     <tr>
@@ -54,10 +54,8 @@
                                 <input type="number" name="UnitPrice[]" class="form-control" value="@item.UnitPrice" />
                             </td>
                             <td>
-
-                                @Html.DropDownListFor(m => m.Product.ProductID, SelectListHelper.ListOfProducts(), new { @class = "form-control", @id = "selectProduct" })
+                                <input type="hidden" name="ProductIDs[]" class="form-control" value="@item.ProductID"/>
                             </td>
-
                             <td>
                                 <input type="number" name="Quantity[]" class="form-control" value="@item.Quantity" />
                             </td>
@@ -84,9 +82,10 @@
                                 <td>
                                     <input type="text" name="Quantity[]" class="form-control"  />
                                 </td>
-                                <td>
-                                   @Html.DropDownListFor(m => m.Product.ProductID, SelectListHelper.ListOfProducts(), new { @class="form-control",@id="selectProduct"})
-                                </td>
+                                    <td>
+                                                                        <input type="hidden" name="ProductID[]" class="form-control"/>
+                                        </td>
+                          
                                 <td>
                                     <input type="text" name="Quantity[]" class="form-control" />
                                 </td>

@@ -7,13 +7,14 @@ using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using static LiteCommerce.Admin.WebUserPrincipal;
 
 namespace LiteCommerce.Admin.Controllers
 {
     /// <summary>
     /// 
     /// </summary>
-    [Authorize(Roles = WebUserRoles.Administrator)]
+    [AuthRole(Roles = WebUserRoles.Administrator)]
     public class EmployeeController : Controller
     {
         /// <summary>

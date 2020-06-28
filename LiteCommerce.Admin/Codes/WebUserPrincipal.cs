@@ -99,7 +99,7 @@ namespace LiteCommerce.Admin
             {
             }
         }
-        public class YourCustomAuthorize : AuthorizeAttribute
+        public class AuthRole : AuthorizeAttribute
         {
             public override void OnAuthorization(AuthorizationContext filterContext)
             {

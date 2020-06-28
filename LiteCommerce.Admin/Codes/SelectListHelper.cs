@@ -13,6 +13,11 @@ namespace LiteCommerce.Admin
         /// 
         /// </summary>
         /// <returns></returns>
+        public static string[] ListOfRoles()
+        {
+            string[] roles = { "Accounttant", "Saleman", "Administrator" };
+            return roles;
+        }
         public static List<SelectListItem> ListOfProducts(bool allowSelectAll = true)
         {
             List<SelectListItem> listProducts = new List<SelectListItem>();

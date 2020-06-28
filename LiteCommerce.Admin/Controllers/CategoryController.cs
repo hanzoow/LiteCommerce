@@ -6,13 +6,14 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
+using static LiteCommerce.Admin.WebUserPrincipal;
 
 namespace LiteCommerce.Admin.Controllers
 {
     /// <summary>
     /// 
     /// </summary>
-    [Authorize(Roles = WebUserRoles.Accountant)]
+    [AuthRole(Roles = WebUserRoles.Accountant)]
     public class CategoryController : Controller
     {
 
@@ -130,6 +131,23 @@ namespace LiteCommerce.Admin.Controllers
             if (categoryIDs != null)
                 CatalogBLL.Category_Delete(categoryIDs);
             return RedirectToAction("Index");
+        }
+
+        public ActionResult Detail(string id = "")
+        {
+            if (string.IsNullOrEmpty(id))
+            {
+                return RedirectToAction("Index");
+            }
+            try
+            {
+                Category model = CatalogBLL.Category_Get(Convert.ToInt32(id));
+                return View(model);
+            }
+            catch (Exception e)
+            {
+                return RedirectToAction("Index");
+            }
         }
     }
 }

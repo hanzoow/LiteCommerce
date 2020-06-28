@@ -59,7 +59,10 @@
                             <td>
                                 <span style="display:block">@item.Description</span>
                             </td>
-                            <td><a href="~/Category/Input/@item.CategoryID" class="btn btn-sm btn-primary"><i class="fa fa-pencil"></i></a></td>
+                            <td>
+                                <a href="~/Category/Detail/@item.CategoryID" class="btn btn-sm btn-success" data-toggle="tooltip" title="View"><i class="fa fa-eye"></i></a>
+                                <a href="~/Category/Input/@item.CategoryID" class="btn btn-sm btn-primary"><i class="fa fa-pencil"></i></a>
+                            </td>
                         </tr>
                     }
                 </tbody>

@@ -5,13 +5,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using static LiteCommerce.Admin.WebUserPrincipal;
 
 namespace LiteCommerce.Admin.Controllers
 {
     /// <summary>
     /// 
     /// </summary>
-    [Authorize(Roles = WebUserRoles.Accountant)]
+    [AuthRole(Roles = WebUserRoles.Accountant)]
     public class CustomerController : Controller
     {
         /// <summary>

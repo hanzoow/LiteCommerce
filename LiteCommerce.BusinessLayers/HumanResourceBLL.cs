@@ -92,5 +92,6 @@ namespace LiteCommerce.BusinessLayers
         {
             return EmployeeDB.CheckEmail(employeeId, email, method);
         }
+
     }
 }
