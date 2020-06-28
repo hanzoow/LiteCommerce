@@ -40,106 +40,109 @@
     </form>
 </div>
 <!-- /.box -->
-<div class="row">
-    <div class="col-sm-8">
-        <span>There are <b>@Model.RowCount</b> Employees. Page <b>@Model.Page/@Model.PageCount</b></span> 
-    </div>
-    <div class="col-sm-4">
-        <div class="pull-right">
-            <a href="~/Employee/Input" class="btn btn-sm btn-success"><i class="fa fa-plus-circle"></i> Add</a>
-            <button class="btn btn-sm btn-danger"><i class="fa fa-trash-o"></i> Delete</button>
+<form action="~/Employee/Delete" method="POST">
+    <div class="row">
+        <div class="col-sm-8">
+            <span>There are <b>@Model.RowCount</b> Employees. Page <b>@Model.Page/@Model.PageCount</b></span>
+        </div>
+        <div class="col-sm-4">
+            <div class="pull-right">
+                <a href="~/Employee/Input" class="btn btn-sm btn-success"><i class="fa fa-plus-circle"></i> Add</a>
+                <button class="btn btn-sm btn-danger"><i class="fa fa-trash-o"></i> Delete</button>
+            </div>
         </div>
     </div>
-</div>
-<br />
-<!-- Table box -->
-<div class="box box-success">
-    <div class="box-body">
-        <table class="table table-bordered table-hover">
-            <thead>
-                <tr>
-                    <th><input type="checkbox" id="selectAll"/></th>
-                    <th>#</th>
-                    <th>Name</th>
-                    <th>Birthday</th>
-                    <th>HireDate</th>
-                    <th>Contact Info</th>
-                    <th>Address</th>
-                    <th>Action</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var item in Model.Data)
-                {
+    <br />
+    <!-- Table box -->
+    <div class="box box-success">
+        @Html.Raw(TempData["employeeError"])
+        <div class="box-body">
+            <table class="table table-bordered table-hover">
+                <thead>
                     <tr>
-                        <td>
-                            <input type="checkbox" />
-                        </td>
-                        <td>@((Model.Page - 1) * Model.PageSize + (++i))</td>
-                        <td>
-                            <div class="row">
-                                <div class="col-sm-3">
-                                    @if (string.IsNullOrEmpty(item.PhotoPath))
-                                    {
-                                        <img src="~/Images/avt-facebook.jpg" width="50px" class="img-circle" />
-                                    }
-                                    else
-                                    {
-                                        <img src="@item.PhotoPath" width="50px" class="img-circle" />
-                                    }
-                                </div>
-                                <div class="col-sm-9">
-                                    <span class="text-bold text-black">@item.FirstName @item.LastName</span>
-                                    <br />
-                                    <span>(@item.Title)</span>
-                                </div>
-                            </div>
-                            
-                        </td>
-                        <td>
-                            <span>@string.Format("{0:dd/MM/yyyy}", item.BirthDate)</span>
-                        </td>
-                        <td>
-                            <span> @string.Format("{0:dd/MM/yyyy}", item.HireDate)</span>
-                        </td>
-                        <td>
-                            <span style="display:block"><i class="fa fa-phone"></i> @item.HomePhone</span>
-                            <span style="display:block"><i class="fa fa-envelope"></i> @item.Email</span>
-                        </td>
-                        <td>
-                            <span style="display:block">@item.Address</span>
-                            <span> @item.City -  @item.Country</span>
-                        </td>
-                        <td><a href="~/Employee/Input/@item.EmployeeID" class="btn btn-sm btn-primary"><i class="fa fa-pencil"></i></a></td>
+                        <th><input type="checkbox" id="selectAll" /></th>
+                        <th>#</th>
+                        <th>Name</th>
+                        <th>Birthday</th>
+                        <th>HireDate</th>
+                        <th>Contact Info</th>
+                        <th>Address</th>
+                        <th>Action</th>
                     </tr>
-                }
-            </tbody>
-        </table>
-    </div>
-    <div class="box-footer clearfix">
-        <ul class="pagination pagination-sm no-margin pull-right">
-            @if (Model.Page != 1)
-            {
-                <li><a href="~/Employee?@paramSearch&page=1&country=@Model.Country">First</a></li>
-            }
-            @for (int page = 1; page <= Model.PageCount; page++)
-            {
-                if (Model.Page == page)
-                {
-                    <li class="active"><a href="~/Employee?@paramSearch&page=@page&country=@Model.Country">@page</a></li>
-                }
-                else
-                {
-                    <li><a href="~/Employee?@paramSearch&page=@page&country=@Model.Country">@page</a></li>
-                }
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.Data)
+                    {
+                        <tr>
+                            <td>
+                                <input type="checkbox" name="employeeIds" value="@item.EmployeeID" />
+                            </td>
+                            <td>@((Model.Page - 1) * Model.PageSize + (++i))</td>
+                            <td>
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        @if (string.IsNullOrEmpty(item.PhotoPath))
+                                        {
+                                            <img src="~/Images/avt-facebook.jpg" width="50px" class="img-circle" />
+                                        }
+                                        else
+                                        {
+                                            <img src="@item.PhotoPath" width="50px" class="img-circle" />
+                                        }
+                                    </div>
+                                    <div class="col-sm-9">
+                                        <span class="text-bold text-black">@item.FirstName @item.LastName</span>
+                                        <br />
+                                        <span>(@item.Title)</span>
+                                    </div>
+                                </div>
 
-            }
-            @if (Model.Page != Model.PageCount)
-            {
-                <li><a href="~/Employee?@paramSearch&page=@Model.PageCount&country=@Model.Country">Last</a></li>
-            }     
-        </ul>
+                            </td>
+                            <td>
+                                <span>@string.Format("{0:dd/MM/yyyy}", item.BirthDate)</span>
+                            </td>
+                            <td>
+                                <span> @string.Format("{0:dd/MM/yyyy}", item.HireDate)</span>
+                            </td>
+                            <td>
+                                <span style="display:block"><i class="fa fa-phone"></i> @item.HomePhone</span>
+                                <span style="display:block"><i class="fa fa-envelope"></i> @item.Email</span>
+                            </td>
+                            <td>
+                                <span style="display:block">@item.Address</span>
+                                <span> @item.City -  @item.Country</span>
+                            </td>
+                            <td><a href="~/Employee/Input/@item.EmployeeID" class="btn btn-sm btn-primary"><i class="fa fa-pencil"></i></a></td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+        <div class="box-footer clearfix">
+            <ul class="pagination pagination-sm no-margin pull-right">
+                @if (Model.Page != 1)
+                {
+                    <li><a href="~/Employee?@paramSearch&page=1&country=@Model.Country">First</a></li>
+                }
+                @for (int page = 1; page <= Model.PageCount; page++)
+                {
+                    if (Model.Page == page)
+                    {
+                        <li class="active"><a href="~/Employee?@paramSearch&page=@page&country=@Model.Country">@page</a></li>
+                    }
+                    else
+                    {
+                        <li><a href="~/Employee?@paramSearch&page=@page&country=@Model.Country">@page</a></li>
+                    }
+
+                }
+                @if (Model.Page != Model.PageCount)
+                {
+                    <li><a href="~/Employee?@paramSearch&page=@Model.PageCount&country=@Model.Country">Last</a></li>
+                }
+            </ul>
+        </div>
+        <!-- /.box-body -->
     </div>
-    <!-- /.box-body -->
-</div>
+</form>
 <!-- /.box -->

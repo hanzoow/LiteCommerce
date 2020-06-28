@@ -34,6 +34,8 @@
     <br />
     <!-- Table box -->
     <div class="box box-success">
+        @Html.Raw(TempData["Error"])
+
         <div class="box-body">
             <table class="table table-bordered table-hover">
                 <thead>
@@ -57,7 +59,7 @@
                                 <span class="text-bold text-blue">@item.CompanyName</span>
                             </td>
                             <td>
-                                <span style="display:block"><i class="fa fa-phone"></i> @item.Phone</span>                            
+                                <span style="display:block"><i class="fa fa-phone"></i> @item.Phone</span>
                             </td>
                             <td>
                                 <a href="~/Shipper/Detail/@item.ShipperID" class="btn btn-sm btn-success" data-toggle="tooltip" title="View"><i class="fa fa-eye"></i></a>

@@ -36,11 +36,13 @@
     <br />
     <!-- Table box -->
     <div class="box box-success">
+        @Html.Raw(TempData["Error"])
+
         <div class="box-body">
             <table class="table table-bordered table-hover">
                 <thead>
                     <tr>
-                        <th><input type="checkbox" id="selectAll"/></th>
+                        <th><input type="checkbox" id="selectAll" /></th>
                         <th>#</th>
                         <th>Name</th>
                         <th>Address</th>
@@ -49,7 +51,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach(var item in Model.Data)
+                    @foreach (var item in Model.Data)
                     {
                         <tr>
                             <td>
@@ -88,20 +90,20 @@
                 }
                 @for (int page = 1; page <= Model.PageCount; page++)
                 {
-                if (Model.Page == page)
-                {
+                    if (Model.Page == page)
+                    {
                         <li class="active"><a href="~/Supplier?page=@page&@paramSearch">@page</a></li>
-                }
-                else
-                {
+                    }
+                    else
+                    {
                         <li><a href="~/Supplier?page=@page&@paramSearch">@page</a></li>
-                }
+                    }
 
-            }
+                }
                 @if (Model.Page != Model.PageCount)
-            {
+                {
                     <li><a href="~/Supplier?page=@Model.PageCount&@paramSearch">Last</a></li>
-            }
+                }
             </ul>
         </div>
         <!-- /.box-body -->

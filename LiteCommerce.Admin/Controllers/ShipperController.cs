@@ -120,7 +120,17 @@ namespace LiteCommerce.Admin.Controllers
         {
             if (shipperIDs != null)
             {
-                CatalogBLL.Shipper_Delete(shipperIDs);
+                var rs = CatalogBLL.Shipper_Delete(shipperIDs);
+                if (rs == true)
+                {
+                    TempData["Error"] = "<script>alert('Xóa shipper thành công!');</script>";
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    TempData["Error"] = "<script>alert('Xóa không thành công !');</script>";
+                    return RedirectToAction("Index");
+                }
             }
             return RedirectToAction("Index");
         }

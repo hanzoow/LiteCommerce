@@ -92,6 +92,9 @@ namespace LiteCommerce.BusinessLayers
         {
             return EmployeeDB.CheckEmail(employeeId, email, method);
         }
-
+        public static bool Employee_Delete(int[] employeeIds)
+        {
+            return EmployeeDB.Delete(employeeIds);
+        }
     }
 }

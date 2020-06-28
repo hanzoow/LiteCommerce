@@ -134,7 +134,17 @@ namespace LiteCommerce.Admin.Controllers
         {
             if (supplierIDs!=null)
             {
-                CatalogBLL.Supplier_Delete(supplierIDs);
+                bool rs = CatalogBLL.Supplier_Delete(supplierIDs);
+                if (rs == true)
+                {
+                    TempData["Error"] = "<script>alert('Xóa supplier thành công!');</script>";
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    TempData["Error"] = "<script>alert('Xóa không thành công !');</script>";
+                    return RedirectToAction("Index");
+                }
             }
             return RedirectToAction("Index");
         }

@@ -80,6 +80,8 @@
 <br />
 <!-- Table box -->
 <div class="box box-success">
+    @Html.Raw(TempData["Error"])
+
     <div class="box-body">
         <table class="table table-bordered table-hover">
             <thead>
@@ -103,7 +105,7 @@
                         </td>
                         <td>@((Model.Page - 1) * Model.PageSize + (++i))</td>
                         <td>
-                            @{ 
+                            @{
                                 string urlImage = string.IsNullOrEmpty(item.PhotoPath) ? "/Images/no-image.png" : item.PhotoPath;
                             }
                             <img src="@urlImage" width="50px" />
@@ -126,6 +128,7 @@
             </tbody>
         </table>
     </div>
+</div>
  </form>
     <div class="box-footer clearfix">
         <ul class="pagination pagination-sm no-margin pull-right">
@@ -171,5 +174,4 @@
         </ul>
     </div>
     <!-- /.box-body -->
-</div>
 <!-- /.box -->

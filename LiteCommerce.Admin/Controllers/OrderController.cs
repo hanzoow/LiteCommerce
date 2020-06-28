@@ -189,13 +189,13 @@ namespace LiteCommerce.Admin.Controllers
                 rs = SaleManagementBLL.Order_Delete(orderIds);
                 if(rs == true)
                 {
-                    ViewBag.Delete = true;
+                    TempData["orderError"] = "<script>alert('Xóa order thành công!');</script>";
                     return RedirectToAction("Index");
 
                 }
                 else
                 {
-                    ViewBag.Delete = false;
+                    TempData["orderError"] = "<script>alert('Xóa không thành công !');</script>";
                     return RedirectToAction("Index");
 
                 }

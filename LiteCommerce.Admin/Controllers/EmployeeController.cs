@@ -156,5 +156,24 @@ namespace LiteCommerce.Admin.Controllers
                 return View(model);
             }
         }
+        [HttpPost]
+        public ActionResult Delete(string method = "", int[] employeeIds = null)
+        {
+            if (employeeIds != null)
+            {
+               bool rs = HumanResourceBLL.Employee_Delete(employeeIds);
+                if(rs == true)
+                {
+                    TempData["employeeError"] = "<script>alert('Xóa employee thành công!');</script>";
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    TempData["employeeError"] = "<script>alert('Xóa không thành công !');</script>";
+                    return RedirectToAction("Index");
+                }
+            }
+            return RedirectToAction("Index");
+        }
     }
 }

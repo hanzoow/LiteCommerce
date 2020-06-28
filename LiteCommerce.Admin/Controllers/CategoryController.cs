@@ -129,7 +129,19 @@ namespace LiteCommerce.Admin.Controllers
         public ActionResult Delete(int[] categoryIDs)
         {
             if (categoryIDs != null)
-                CatalogBLL.Category_Delete(categoryIDs);
+            {
+                var rs = CatalogBLL.Category_Delete(categoryIDs);
+                if (rs == true)
+                {
+                    TempData["Error"] = "<script>alert('Xóa category thành công!');</script>";
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    TempData["Error"] = "<script>alert('Xóa không thành công !');</script>";
+                    return RedirectToAction("Index");
+                }
+            }
             return RedirectToAction("Index");
         }
 

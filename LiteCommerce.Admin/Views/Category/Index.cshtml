@@ -34,11 +34,13 @@
     <br />
     <!-- Table box -->
     <div class="box box-success">
+        @Html.Raw(TempData["Error"])
+
         <div class="box-body">
             <table class="table table-bordered table-hover">
                 <thead>
                     <tr>
-                        <th><input type="checkbox" id="selectAll"/></th>
+                        <th><input type="checkbox" id="selectAll" /></th>
                         <th>#</th>
                         <th>Name</th>
                         <th>Description</th>

@@ -36,6 +36,8 @@
     <br />
     <!-- Table box -->
     <div class="box box-success">
+        @Html.Raw(TempData["Error"])
+
         <div class="box-body">
             <table class="table table-bordered table-hover">
                 <thead>
@@ -53,7 +55,7 @@
                     {
                         <tr>
                             <td>
-                                <input type="checkbox" name="customerIDs" value="@item.CustomerID"/>
+                                <input type="checkbox" name="customerIDs" value="@item.CustomerID" />
                             </td>
                             <td>@((Model.Page - 1) * Model.PageSize + (++i))</td>
                             <td>
@@ -85,7 +87,7 @@
                 @if (Model.Page != 1)
                 {
                     <li><a href="~/Customer?page=1@paramSearch">First</a></li>
-                }                
+                }
                 @for (int page = 1; page <= Model.PageCount; page++)
                 {
                     if (Model.Page == page)
@@ -101,7 +103,7 @@
                 @if (Model.Page != Model.PageCount)
                 {
                     <li><a href="~/Customer?page=@Model.PageCount@paramSearch">Last</a></li>
-                }            
+                }
             </ul>
         </div>
         <!-- /.box-body -->
